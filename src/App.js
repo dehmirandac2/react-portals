@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import Header from './components/Header/index'
+import Card from './components/Card/index'
+
+const useStyles = makeStyles(() => ({
+  root: {
+    marginTop: 40
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Container maxWidth="md" className={classes.root}>
+        <Grid container spacing={2}>
+          {[0, 1, 2].map((value) => (
+            <Grid xs={4} key={value} item>
+              <Card />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
   );
 }
 
